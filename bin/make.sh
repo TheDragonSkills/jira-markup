@@ -30,4 +30,4 @@ for file in source/*.html; do
     remove_unwanted_tags "$file"
 done
 
-codex "\$aif-distillation source --path skills --redact-source-map --name jira-markup"
+codex "\$aif-distillation source --path skills --update --redact-source-map --name jira-markup"
