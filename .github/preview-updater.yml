@@ -2,6 +2,7 @@ package:
   manager: none
 
 data:
+  title: 'Jira Markup Skill'
   description: 'by The Dragon Code'
 
 image:
