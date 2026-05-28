@@ -25,4 +25,4 @@ for file in source/*.html; do
     remove_statsig_meta_tag "$file"
 done
 
-codex "\$aif-distillation source --split --path skills --redact-source-map --name jira-markup"
+codex "\$aif-distillation source --path skills --redact-source-map --name jira-markup"

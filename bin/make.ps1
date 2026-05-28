@@ -40,7 +40,7 @@ try {
         Remove-StatsigMetaTag -Path $_.FullName
     }
     
-    codex '$aif-distillation source --split --path skills --redact-source-map --name jira-markup'
+    codex '$aif-distillation source --path skills --redact-source-map --name jira-markup'
 }
 finally {
     Pop-Location
