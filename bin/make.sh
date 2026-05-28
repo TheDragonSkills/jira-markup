@@ -14,16 +14,11 @@ remove_statsig_meta_tag() {
     mv "$temp_file" "$file"
 }
 
-curl -o source/texteffects.html https://ouryahoo.atlassian.net/secure/WikiRendererHelpAction.jspa?section=texteffects
-curl -o source/headings.html https://ouryahoo.atlassian.net/secure/WikiRendererHelpAction.jspa?section=headings
-curl -o source/breaks.html https://ouryahoo.atlassian.net/secure/WikiRendererHelpAction.jspa?section=breaks
-curl -o source/links.html https://ouryahoo.atlassian.net/secure/WikiRendererHelpAction.jspa?section=links
-curl -o source/lists.html https://ouryahoo.atlassian.net/secure/WikiRendererHelpAction.jspa?section=lists
-curl -o source/images.html https://ouryahoo.atlassian.net/secure/WikiRendererHelpAction.jspa?section=images
-curl -o source/attachments.html https://ouryahoo.atlassian.net/secure/WikiRendererHelpAction.jspa?section=attachments
-curl -o source/tables.html https://ouryahoo.atlassian.net/secure/WikiRendererHelpAction.jspa?section=tables
-curl -o source/advanced.html https://ouryahoo.atlassian.net/secure/WikiRendererHelpAction.jspa?section=advanced
-curl -o source/miscellaneous.html https://ouryahoo.atlassian.net/secure/WikiRendererHelpAction.jspa?section=miscellaneous
+sections="texteffects headings breaks links lists images attachments tables advanced miscellaneous"
+
+for section in $sections; do
+    curl -o "source/${section}.html" "https://ouryahoo.atlassian.net/secure/WikiRendererHelpAction.jspa?section=${section}"
+done
 
 for file in source/*.html; do
     [ -f "$file" ] || continue
