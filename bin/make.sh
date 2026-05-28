@@ -14,7 +14,6 @@ remove_unwanted_tags() {
     perl -0777 -pe '
         s{<(style|script|form)\b[^>]*>.*?</\1\s*>}{}gis;
         s{<(meta|link)\b[^>]*/?>}{}gis;
-        s{<!--\b[^>]*-->}{}gis;
     ' "$file" > "$temp_file"
     mv "$temp_file" "$file"
 }

@@ -16,8 +16,6 @@ function Remove-UnwantedTags {
     $content = [System.Text.RegularExpressions.Regex]::Replace($content, '(?is)<(style|script|form)\b[^>]*>.*?</\1\s*>', '')
     # Remove void/self-closing tags: meta, link
     $content = [System.Text.RegularExpressions.Regex]::Replace($content, '(?is)<(meta|link)\b[^>]*/?>', '')
-    # Remove comments
-    $content = [System.Text.RegularExpressions.Regex]::Replace($content, '(?is)<!--\b[^>]*-->', '')
 
     $utf8WithoutBom = New-Object System.Text.UTF8Encoding $false
     [System.IO.File]::WriteAllText($Path, $content, $utf8WithoutBom)
