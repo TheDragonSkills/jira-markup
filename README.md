@@ -8,7 +8,7 @@
 ## Quick Start
 
 ```shell
-npx skills add https://github.com/TheDragonSkills/jira-markup
+npx skills add TheDragonSkills/jira-markup
 ```
 
 ## License
