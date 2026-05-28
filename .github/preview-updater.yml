@@ -1,0 +1,10 @@
+package:
+  manager: none
+
+data:
+  description: 'by The Dragon Code'
+
+image:
+  parameters:
+    style: style_1
+    icon: book-open
