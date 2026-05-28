@@ -4,14 +4,20 @@ $ErrorActionPreference = 'Stop'
 $scriptDirectory = Split-Path -Parent $PSCommandPath
 $repositoryRoot = Split-Path -Parent $scriptDirectory
 
-function Remove-StatsigMetaTag {
+function Remove-UnwantedTags {
     param (
         [Parameter(Mandatory = $true)]
         [string] $Path
     )
 
     $content = Get-Content -LiteralPath $Path -Raw
-    $content = $content -replace '<meta\s+[^>]*name="ajs-fe-statsig-values"[^>]*>\r?\n?', ''
+
+    # Remove paired tags with their content: style, script, form
+    $content = [System.Text.RegularExpressions.Regex]::Replace($content, '(?is)<(style|script|form)\b[^>]*>.*?</\1\s*>', '')
+    # Remove void/self-closing tags: meta, link
+    $content = [System.Text.RegularExpressions.Regex]::Replace($content, '(?is)<(meta|link)\b[^>]*/?>', '')
+    # Remove comments
+    $content = [System.Text.RegularExpressions.Regex]::Replace($content, '(?is)<!--\b[^>]*-->', '')
 
     $utf8WithoutBom = New-Object System.Text.UTF8Encoding $false
     [System.IO.File]::WriteAllText($Path, $content, $utf8WithoutBom)
@@ -37,7 +43,7 @@ try {
     }
 
     Get-ChildItem -LiteralPath source -Filter *.html | ForEach-Object {
-        Remove-StatsigMetaTag -Path $_.FullName
+        Remove-UnwantedTags -Path $_.FullName
     }
     
     codex '$aif-distillation source --path skills --redact-source-map --name jira-markup'

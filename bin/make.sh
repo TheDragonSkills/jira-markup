@@ -6,11 +6,16 @@ repository_root=$(dirname "$script_dir")
 
 cd "$repository_root"
 
-remove_statsig_meta_tag() {
+remove_unwanted_tags() {
     file=$1
     temp_file="${file}.tmp"
 
-    sed 's/<meta[[:space:]][^>]*name="ajs-fe-statsig-values"[^>]*>//g' "$file" > "$temp_file"
+    # Remove paired tags (style, script, form) with their content, and void tags (meta, link)
+    perl -0777 -pe '
+        s{<(style|script|form)\b[^>]*>.*?</\1\s*>}{}gis;
+        s{<(meta|link)\b[^>]*/?>}{}gis;
+        s{<!--\b[^>]*-->}{}gis;
+    ' "$file" > "$temp_file"
     mv "$temp_file" "$file"
 }
 
@@ -22,7 +27,7 @@ done
 
 for file in source/*.html; do
     [ -f "$file" ] || continue
-    remove_statsig_meta_tag "$file"
+    remove_unwanted_tags "$file"
 done
 
 codex "\$aif-distillation source --path skills --redact-source-map --name jira-markup"
