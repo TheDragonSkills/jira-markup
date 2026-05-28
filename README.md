@@ -55,45 +55,6 @@ Export failed: missing customer_id
 {code}
 ```
 
-## Repository Layout
-
-```text
-skills/
-  jira-markup-code-panels/
-  jira-markup-linking-media/
-  jira-markup-structure-formatting/
-  jira-markup-text-formatting/
-source/
-  *.html
-bin/
-  make.sh
-  make.ps1
-```
-
-The `source/` directory stores the downloaded Jira wiki renderer help pages used as source material. The `bin/make.sh`
-and `bin/make.ps1` scripts refresh those pages and run the distillation workflow that regenerates the skill packages.
-
-## Development
-
-Refresh the source pages and regenerate skills from macOS/Linux:
-
-```shell
-./bin/make.sh
-```
-
-Refresh from Windows PowerShell:
-
-```powershell
-./bin/make.ps1
-```
-
-The build scripts download Jira renderer help sections, remove a noisy Statsig metadata tag, and invoke the AI Factory
-distillation flow:
-
-```text
-codex "$aif-distillation source --split --path skills --redact-source-map --name jira-markup"
-```
-
 ## Good Fit
 
 Use these skills when you need Jira wiki markup that is:
