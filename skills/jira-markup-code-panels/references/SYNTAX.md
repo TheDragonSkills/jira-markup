@@ -27,6 +27,14 @@ Panel-style parameters may be accepted by some renderers:
 {noformat}
 ```
 
+Use `nopanel` when the renderer supports it and you need plain preformatted text without the surrounding panel chrome:
+
+```text
+{noformat:nopanel=true}
+raw text only
+{noformat}
+```
+
 ## Panels
 
 Basic panel:
@@ -76,6 +84,8 @@ async function runJob(job) {
 {code}
 ```
 
+Without a language parameter, Jira commonly treats code blocks as Java.
+
 Specify a language when highlighting matters:
 
 ```text
@@ -87,7 +97,7 @@ Specify a language when highlighting matters:
 {code}
 ```
 
-Common language identifiers include `bash`, `css`, `html`, `javascript`, `json`, `php`, `python`, `ruby`, `sql`, `xml`, and `yaml`. If unsure, use `{code}` without a language or use `{noformat}` for logs.
+Language identifiers commonly include `actionscript`, `ada`, `applescript`, `bash`, `c`, `c#`, `c++`, `css`, `erlang`, `go`, `groovy`, `haskell`, `html`, `java`, `javascript`, `json`, `lua`, `objc`, `perl`, `php`, `python`, `r`, `ruby`, `scala`, `sql`, `swift`, `visualbasic`, `xml`, and `yaml`. If unsure, use `{code}` without a language or use `{noformat}` for logs.
 
 ## Repair Checklist
 

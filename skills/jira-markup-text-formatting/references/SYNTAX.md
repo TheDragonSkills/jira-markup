@@ -72,6 +72,13 @@ Prefix a special character with a backslash when it must render literally:
 \{not-a-macro\}
 ```
 
+Escape single curly braces inside `{{monospace}}` spans when the braces are literal text. Jira can treat unescaped `{name}` fragments as macro-like placeholders and split the monospace rendering.
+
+```text
+{{GET /api/users/\{user\}/show}}
+\{user\}
+```
+
 Common icon notations include `:)`, `:(`, `:P`, `:D`, `;)`, `(y)`, `(n)`, `(i)`, `(/)`, `(x)`, `(!)`, `(+)`, `(-)`, `(?)`, `(on)`, `(off)`, `(*)`, `(*r)`, `(*g)`, `(*b)`, `(*y)`, `(flag)`, and `(flagoff)`.
 
 Use icons sparingly in operational comments. Prefer words for important states because icon rendering can vary.

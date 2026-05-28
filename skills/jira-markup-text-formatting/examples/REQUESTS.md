@@ -38,6 +38,21 @@ Output:
 \*required\*
 ```
 
+## Keep Path Parameters Inside Monospace Text
+
+Request:
+
+```text
+Format this Jira bullet without breaking the inline code:
+Check GET /api/users/{user}/show for the selected user.
+```
+
+Output:
+
+```text
+* Check {{GET /api/users/\{user\}/show}} for the selected user.
+```
+
 ## Quote A Customer Message
 
 Request:
