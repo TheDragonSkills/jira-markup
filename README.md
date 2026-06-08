@@ -23,21 +23,6 @@ After installation, ask your agent to format content for Jira. For example:
 Format this incident summary as a Jira comment with headings, a status table, and a code block for the log excerpt.
 ```
 
-## Documentation
-
-| Skill                                                                                  | Syntax reference                                                            | Use it for                                                                          |
-|----------------------------------------------------------------------------------------|-----------------------------------------------------------------------------|-------------------------------------------------------------------------------------|
-| [`jira-markup-text-formatting`](skills/jira-markup-text-formatting/SKILL.md)           | [`SYNTAX.md`](skills/jira-markup-text-formatting/references/SYNTAX.md)      | Inline emphasis, headings, quotes, colors, escapes, icons, and line breaks.         |
-| [`jira-markup-structure-formatting`](skills/jira-markup-structure-formatting/SKILL.md) | [`SYNTAX.md`](skills/jira-markup-structure-formatting/references/SYNTAX.md) | Bulleted lists, numbered lists, nested lists, and Jira tables.                      |
-| [`jira-markup-linking-media`](skills/jira-markup-linking-media/SKILL.md)               | [`SYNTAX.md`](skills/jira-markup-linking-media/references/SYNTAX.md)        | Links, anchors, user references, images, attachments, and media embeds.             |
-| [`jira-markup-code-panels`](skills/jira-markup-code-panels/SKILL.md)                   | [`SYNTAX.md`](skills/jira-markup-code-panels/references/SYNTAX.md)          | `{code}`, `{noformat}`, and `{panel}` blocks for code, logs, configs, and callouts. |
-
-Each skill includes:
-
-- `SKILL.md` with usage rules and quality checks.
-- `references/SYNTAX.md` with Jira wiki syntax notes.
-- `examples/REQUESTS.md` with practical request patterns.
-
 ## Example Output
 
 ```text
