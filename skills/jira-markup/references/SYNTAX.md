@@ -165,6 +165,12 @@ Add image attributes as comma-separated `name=value` pairs:
 !diagram.png|align=right, vspace=4!
 ```
 
+Use image notation for actual images. Use attachment link notation when the user asks for a downloadable file link instead of an inline image:
+
+```text
+[^diagram.png]
+```
+
 Embed supported media attachments with optional properties:
 
 ```text
@@ -174,7 +180,7 @@ Embed supported media attachments with optional properties:
 !walkthrough.wmv|id=walkthrough!
 ```
 
-Common media properties are `width`, `height`, and `id`. Prefer attached media for embeds; remote media can be blocked for security.
+Common media properties are `width`, `height`, and `id`. Default supported embedded media families include Flash, QuickTime, Windows Media, Real Media, and MP3. Prefer attached media for embeds; remote media can be rejected by Jira security rules.
 
 ## Code, Noformat, And Panels
 
@@ -184,6 +190,14 @@ Use `{noformat}` for logs, stack traces, and literal text:
 {noformat}
 ERROR export failed for account=42
 payload contains *literal* asterisks
+{noformat}
+```
+
+`{noformat}` can take panel-style parameters in renderers that support them. Use them sparingly because portability varies:
+
+```text
+{noformat:title=Raw Import Log}
+ERROR import failed for row=12
 {noformat}
 ```
 
@@ -198,7 +212,15 @@ Use `{code}` for source code or structured configuration:
 {code}
 ```
 
-Without a language parameter, Jira commonly treats code as Java. Common language identifiers include `bash`, `c`, `c#`, `c++`, `css`, `go`, `groovy`, `html`, `java`, `javascript`, `json`, `perl`, `php`, `python`, `ruby`, `scala`, `sql`, `swift`, `xml`, and `yaml`.
+Use code macro parameters when the user needs a title or renderer styling:
+
+```text
+{code:language=json|title=payload.json|borderStyle=solid}
+{"status":"failed"}
+{code}
+```
+
+Without a language parameter, Jira commonly treats code as Java. Common language identifiers include `actionscript`, `ada`, `applescript`, `bash`, `c`, `c#`, `c++`, `css`, `erlang`, `go`, `groovy`, `haskell`, `html`, `java`, `javascript`, `json`, `lua`, `objc`, `perl`, `php`, `python`, `r`, `ruby`, `scala`, `sql`, `swift`, `visualbasic`, `xml`, and `yaml`.
 
 Use `{panel}` for callouts that may still contain Jira formatting:
 
@@ -208,7 +230,7 @@ Disable the feature flag and restart the worker.
 {panel}
 ```
 
-Common panel parameters include `title`, `borderStyle`, `borderColor`, `borderWidth`, `bgColor`, and `titleBGColor`. Use styled panels sparingly.
+Common panel parameters include `title`, `borderStyle`, `borderColor`, `borderWidth`, `bgColor`, and `titleBGColor`. Separate panel parameters with `|`. Use styled panels sparingly.
 
 ## Escapes And Icons
 

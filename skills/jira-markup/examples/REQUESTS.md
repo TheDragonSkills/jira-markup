@@ -190,6 +190,20 @@ Output:
 !screenshot.png|thumbnail!
 ```
 
+## Link To A Downloadable Attachment
+
+Request:
+
+```text
+Create a Jira link to the attached spreadsheet reconciliation.xlsx.
+```
+
+Output:
+
+```text
+[^reconciliation.xlsx]
+```
+
 ## Embed A Sized Video Attachment
 
 Request:
@@ -205,6 +219,20 @@ Output:
 ```
 
 Note: use an attached media file for embeds; remote media may be blocked by Jira security settings.
+
+## Add Image Attributes
+
+Request:
+
+```text
+Place diagram.png on the right with four pixels of vertical spacing.
+```
+
+Output:
+
+```text
+!diagram.png|align=right, vspace=4!
+```
 
 ## Preserve A Log Snippet
 
@@ -240,6 +268,23 @@ Output:
 {code}
 ```
 
+## Format Code With A Title
+
+Request:
+
+```text
+Put this JSON in Jira with the title payload.json:
+{"status":"failed"}
+```
+
+Output:
+
+```text
+{code:language=json|title=payload.json}
+{"status":"failed"}
+{code}
+```
+
 ## Add A Titled Panel
 
 Request:
@@ -253,6 +298,23 @@ Output:
 ```text
 {panel:title=Rollback Plan}
 Disable the import flag and restart the worker.
+{panel}
+```
+
+## Add A Styled Panel
+
+Request:
+
+```text
+Create a Jira warning panel titled Access Risk with a pale yellow background:
+The shared token expires today.
+```
+
+Output:
+
+```text
+{panel:title=Access Risk|bgColor=#FFFFCE}
+The shared token expires today.
 {panel}
 ```
 

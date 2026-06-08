@@ -1,12 +1,12 @@
 ---
 name: jira-markup
-description: Format Jira wiki-rendered text, lists, tables, links, media, code blocks, and panels into paste-ready markup.
+description: Format Jira wiki-rendered text, lists, tables, links, attachments, images, media, code blocks, and panels into paste-ready markup.
 argument-hint: "<plain text, draft Jira field, links, files, code, table data, or formatting request>"
 ---
 
 # Jira Markup
 
-Use this skill to convert user-provided content into Jira wiki markup for issue descriptions, comments, and other wiki-rendered fields. It should produce a paste-ready markup block and concise notes about assumptions, renderer-sensitive choices, or escaping.
+Use this skill to convert user-provided content into Jira wiki markup for issue descriptions, comments, and other wiki-rendered fields. It should produce one paste-ready markup block and short notes only when assumptions, renderer-sensitive choices, or escaping matter.
 
 ## When To Use
 
@@ -14,21 +14,23 @@ Use this skill when the user asks to:
 
 - format prose, headings, emphasis, quotes, color, or literal characters for Jira
 - build or repair Jira lists, nested outlines, or tables
-- create Jira links, anchors, user references, attachment links, images, or media embeds
-- wrap logs, code, configuration, or callouts in `{noformat}`, `{code}`, or `{panel}` macros
+- create Jira links, anchors, user references, attachment links, images, thumbnails, or media embeds
+- wrap logs, code, configuration, quotes, or callouts in `{noformat}`, `{code}`, `{quote}`, or `{panel}` macros
+- add macro parameters such as code language, title, panel colors, image alignment, thumbnail, or media size
 - fix markup that renders incorrectly in Jira
 
 Do not use this skill for Markdown, HTML, Confluence storage format, or Jira Cloud rich-text editor JSON unless the user explicitly asks to translate between formats.
 
 ## Workflow
 
-1. Identify the target content type: prose, structure, link/media, code/log, panel, or mixed Jira field.
+1. Identify the target content type: prose, structure, link, attachment, image, media, code/log, panel, quote, or mixed Jira field.
 2. Preserve the user's meaning and wording unless rewriting is requested.
 3. Choose the smallest Jira notation that makes the content readable.
-4. Keep block syntax balanced, especially `{quote}`, `{color}`, `{panel}`, `{code}`, and `{noformat}`.
-5. Escape literal markup characters when they should render as text, especially single curly braces inside `{{monospace}}`.
-6. Return the final Jira-ready markup in a fenced `text` code block.
-7. Add short warnings only for meaningful risks such as local file links, remote media restrictions, ambiguous pipes in tables, or renderer-dependent icons.
+4. Keep images and media separate: images may use attached files or remote URLs; embedded media should use attached files unless the user accepts renderer/security risk.
+5. Keep block syntax balanced, especially `{quote}`, `{color}`, `{panel}`, `{code}`, and `{noformat}`.
+6. Escape literal markup characters when they should render as text, especially single curly braces inside `{{monospace}}`.
+7. Return the final Jira-ready markup in a fenced `text` code block.
+8. Add short warnings only for meaningful risks such as local file links, remote media restrictions, ambiguous pipes in tables, or renderer-dependent icons.
 
 ## References And Examples
 
@@ -41,9 +43,10 @@ Do not use this skill for Markdown, HTML, Confluence storage format, or Jira Clo
 - Output is paste-ready Jira wiki markup, not Markdown unless the user requested Markdown.
 - List markers start in column 1, and nested marker sequences are contiguous.
 - Table rows have consistent cell counts, with header cells using double bars.
-- Link and attachment targets preserve exact names, paths, extensions, and aliases.
+- Link, attachment, image, and media targets preserve exact names, paths, extensions, and aliases.
 - Code and literal blocks use the correct macro and close exactly once.
 - Literal braces, stars, underscores, pipes, and macro-looking text are escaped or isolated when needed.
+- Macro parameters use the right separator: pipes between macro parameters, commas inside image/media attribute lists.
 
 ## Artifact Ownership
 
