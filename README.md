@@ -5,49 +5,80 @@
     <img src="https://banners.beyondco.de/Jira%20Markup%20Skill.png?pattern=topography&style=style_1&fontSize=100px&md=1&showWatermark=1&icon=book-open&theme=light&packageManager=&packageName=&description=by+The+Dragon+Code&images=book-open" alt="Jira Markup Skill">
 </picture>
 
-> Agent skills for producing paste-ready Jira wiki markup.
+> Agent skill and CLI for converting Markdown to Jira wiki markup.
 
-This repository contains a small set of focused skills that help an AI agent format Jira comments, issue descriptions,
-reports, and notes using Jira wiki markup. The skills are split by formatting task so the agent can choose the narrowest
-syntax reference needed for the user's request.
-
-## Quick Start
+## Install
 
 ```shell
 npx skills add TheDragonSkills/jira-markup
 ```
 
-After installation, ask your agent to format content for Jira. For example:
+## Usage
 
-```text
-Format this incident summary as a Jira comment with headings, a status table, and a code block for the log excerpt.
+Ask the agent to format content for Jira, or run the converter directly:
+
+```shell
+node skills/jira-markup/scripts/converter.js "# Heading"
 ```
 
-## Example Output
+```shell
+cat content.md | node skills/jira-markup/scripts/converter.js
+```
 
-```text
+Windows PowerShell:
+
+```powershell
+Get-Content -Raw -Path .\content.md | node .\skills\jira-markup\scripts\converter.js
+```
+
+## Output Example
+
+Input:
+
+```markdown
+## Incident Summary
+
+**Status:** Blocked
+
+| Check | Result |
+| --- | --- |
+| API health | Passing |
+| Export job | Failing |
+```
+
+Output:
+
+```jira
 h2. Incident Summary
 
-*Status:* {color:red}Blocked{color}
-*Owner:* {{platform-team}}
+*Status:* Blocked
 
 ||Check||Result||
 |API health|Passing|
 |Export job|Failing|
-
-{code:language=text|title=Latest error}
-Export failed: missing customer_id
-{code}
 ```
 
-## Good Fit
+## Checklists
 
-Use these skills when you need Jira wiki markup that is:
+```markdown
+- [ ] Foo
+- [x] Bar
+- [i] Baz
+    - [!] Qwe
+    - [flag] Rty
+```
 
-- ready to paste into Jira-rendered fields;
-- structured enough for issue descriptions, comments, incident updates, or release notes;
-- careful about Jira-specific macro syntax and escaping rules;
-- readable as plain text before Jira renders it.
+converts to:
+
+```jira
+* (x) Foo
+* (/) Bar
+* (i) Baz
+** (!) Qwe
+** (flag) Rty
+```
+
+![Checklist preview](.github/images/checklist.png)
 
 ## License
 

@@ -1,0 +1,97 @@
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
+
+exports[`converter.js converts markdown from command arguments like stdin 1`] = `
+"h1. Foo
+
+h2. Bar
+
+* Foo
+* Bar
+** Qwe
+** Rty
+* Baz {{POST /api/users/\\{user\\}/some}}
+
+h2. List
+
+# Foo
+# Bar
+#* Qwe
+#* Rty
+# Baz
+
+h2. Checklist
+
+* (/) Foo
+* (x) Bar
+* [i] Baz
+** (/) Qwe
+** (!) Rty
+* (flag) Baz
+
+h2. Table
+
+||Foo 111||Bar 222||Baz 333||
+|q1|q2|q3|
+|w1|w2|w3|
+
+h2. Code
+
+{code:language=typescript|borderStyle=solid|theme=RDark|linenumbers=true|collapse=false}
+import { convert } from '../converter/src/convert'
+{code}
+
+h2. Quote
+
+{quote}Some text
+
+{quote}
+"
+`;
+
+exports[`converter.js converts markdown from stdin 1`] = `
+"h1. Foo
+
+h2. Bar
+
+* Foo
+* Bar
+** Qwe
+** Rty
+* Baz {{POST /api/users/\\{user\\}/some}}
+
+h2. List
+
+# Foo
+# Bar
+#* Qwe
+#* Rty
+# Baz
+
+h2. Checklist
+
+* (/) Foo
+* (x) Bar
+* [i] Baz
+** (/) Qwe
+** (!) Rty
+* (flag) Baz
+
+h2. Table
+
+||Foo 111||Bar 222||Baz 333||
+|q1|q2|q3|
+|w1|w2|w3|
+
+h2. Code
+
+{code:language=typescript|borderStyle=solid|theme=RDark|linenumbers=true|collapse=false}
+import { convert } from '../converter/src/convert'
+{code}
+
+h2. Quote
+
+{quote}Some text
+
+{quote}
+"
+`;

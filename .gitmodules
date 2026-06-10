@@ -1,0 +1,4 @@
+[submodule "converter"]
+	path = converter
+	url = git@github.com:jadujoel/markdown-to-jira.git
+	branch = main

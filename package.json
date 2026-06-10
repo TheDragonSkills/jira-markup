@@ -1,0 +1,25 @@
+{
+    "name": "jira-markup",
+    "author": {
+        "name": "Andrey Helldar",
+        "email": "helldar@dragon-code.pro",
+        "url": "https://dragon-code.pro"
+    },
+    "devDependencies": {
+        "@types/jest": "^30.0.0",
+        "@types/node": "^24.0.0",
+        "esbuild": "^0.27.0",
+        "highlight.js": "^11.11.1",
+        "jest": "^30.4.2",
+        "marked": "^18.0.5",
+        "ts-jest": "^29.4.11"
+    },
+    "peerDependencies": {
+        "typescript": "^6"
+    },
+    "type": "module",
+    "scripts": {
+        "build": "node resources/build.mjs",
+        "test": "jest"
+    }
+}
