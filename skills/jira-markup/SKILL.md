@@ -9,6 +9,11 @@ argument-hint: "<plain text, draft Jira field, links, files, code, table data, o
 
 # Jira Markup
 
+## Required Workflow
+
+When preparing text for Jira, always run the final text through `scripts/converter.js`.
+Do not hand-write Jira wiki markup directly unless the user explicitly asks for manual formatting.
+
 ## How It Works
 
 The script accepts Markdown text as input and writes the converted Jira Markup output to `stdout`.
