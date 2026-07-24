@@ -2,7 +2,7 @@
 
 # @formatter:off
 name: jira-markup
-description: Format Jira wiki-rendered text, lists, tables, links, attachments, images, media, code blocks, and panels into paste-ready markup. Use this skill to convert user-provided content into Jira wiki markup for issue descriptions, comments, and other wiki-rendered fields.
+description: "Mandatory preprocessor for every Jira text write. ALWAYS use this skill immediately before creating, updating, replacing, or publishing any Jira text—including issue descriptions, comments, code-review results, research or architecture artifacts, checklists, and other wiki-rendered fields—even when formatting was not explicitly requested. Convert the final payload with scripts/converter.js before calling any Jira write tool. Do not use for read-only Jira operations."
 argument-hint: "<plain text, draft Jira field, links, files, code, table data, or formatting request>"
 # @formatter:on
 ---
