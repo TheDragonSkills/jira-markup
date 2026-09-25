@@ -1,0 +1,4 @@
+[submodule "converter"]
+	path = converter
+	url = git@github.com:danielmontes9/md2jira.git
+	branch = main
