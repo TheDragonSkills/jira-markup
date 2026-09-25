@@ -21,6 +21,21 @@ async function readMarkdown(): Promise<string | undefined>
     return Buffer.concat(chunks).toString('utf8')
 }
 
+function escapeCurlyBraces(value: string): string
+{
+    return value.replace(/(?<!\\)(\{+|\}+)/g, (braces) => {
+        if (braces.length % 2 === 0) {
+            return braces
+        }
+
+        if (braces[0] === '{') {
+            return `${ braces.slice(0, -1) }\\{`
+        }
+
+        return `\\}${ braces.slice(1) }`
+    })
+}
+
 function normalize(text: string): string
 {
     return text
@@ -28,6 +43,7 @@ function normalize(text: string): string
         .replace(/^(\s*)[-*]\s+\[x]\s+/gm, '$1- (/) ')
         .replace(/^(\s*)[-*]\s+\[!]\s+/gm, '$1- (!) ')
         .replace(/^(\s*)[-*]\s+\[flag]\s+/gm, '$1- (flag) ')
+        .replace(/[{}]/g, '\\$&')
 }
 
 const markdown: string | undefined = await readMarkdown()
@@ -38,5 +54,5 @@ if (markdown === undefined || markdown.length === 0) {
 }
 
 process.stdout.write(
-    convert(normalize(markdown))
+    escapeCurlyBraces(convert(normalize(markdown)))
 )
