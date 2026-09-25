@@ -12,6 +12,7 @@
         "highlight.js": "^11.11.1",
         "jest": "^30.4.2",
         "marked": "^18.0.5",
+        "md2jira-core": "^1.0.0",
         "ts-jest": "^29.4.11"
     },
     "peerDependencies": {

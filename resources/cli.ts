@@ -1,4 +1,4 @@
-import { convert } from '../converter/src/convert'
+import { convert } from 'md2jira-core'
 
 async function readMarkdown(): Promise<string | undefined>
 {
@@ -38,5 +38,5 @@ if (markdown === undefined || markdown.length === 0) {
 }
 
 process.stdout.write(
-    convert(normalize(markdown), true)
+    convert(normalize(markdown))
 )
