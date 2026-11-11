@@ -1,3 +1,4 @@
+import { randomUUID } from 'node:crypto'
 import { convert } from 'md2jira-core'
 
 async function readMarkdown(): Promise<string | undefined>
@@ -21,19 +22,41 @@ async function readMarkdown(): Promise<string | undefined>
     return Buffer.concat(chunks).toString('utf8')
 }
 
-function escapeCurlyBraces(value: string): string
+function convertMarkdown(markdown: string): string
 {
-    return value.replace(/(?<!\\)(\{+|\}+)/g, (braces) => {
-        if (braces.length % 2 === 0) {
-            return braces
-        }
+    const marker = `$JIRA-${ randomUUID() }-`
+    const entities = new Map<string, [string, string]>()
 
-        if (braces[0] === '{') {
-            return `${ braces.slice(0, -1) }\\{`
-        }
+    // Protect source braces so only generated inline-code delimiters match below.
+    const protectedMarkdown = normalize(markdown)
+        .replace(/&(?:#\d{1,7}|#[xX][\da-fA-F]{1,6}|[lr](?:brace|cub));/g, (entity) => {
+            const decoded = convert(entity)
 
-        return `\\}${ braces.slice(1) }`
-    })
+            if (decoded !== '{' && decoded !== '}') {
+                return entity
+            }
+
+            const token = entities.get(entity)?.[0] ?? `${ marker }ENTITY${ entities.size }$`
+            entities.set(entity, [token, decoded])
+
+            // Markdown decodes this marker in text, while code keeps it verbatim.
+            return `&#36;${ token.slice(1) }`
+        })
+        .replace(/[{}]/g, (brace) => `${ marker }${ brace === '{' ? 'OPEN' : 'CLOSE' }$`)
+
+    let result = convert(protectedMarkdown)
+        .replace(/\{\{[\s\S]*?\}\}/g, (inlineCode) => inlineCode
+            .replaceAll(`${ marker }OPEN$`, '\\{')
+            .replaceAll(`${ marker }CLOSE$`, '\\}')
+        )
+        .replaceAll(`${ marker }OPEN$`, '{')
+        .replaceAll(`${ marker }CLOSE$`, '}')
+
+    for (const [original, [token, decoded]] of entities) {
+        result = result.replaceAll(token, decoded).replaceAll(`&#36;${ token.slice(1) }`, original)
+    }
+
+    return result
 }
 
 function normalize(text: string): string
@@ -47,7 +70,6 @@ function normalize(text: string): string
         .replace(/^(\s*)[-*]\s+\[off]\s+/gm, '$1- (off) ')
         .replace(/^(\s*)[-*]\s+\[flag]\s+/gm, '$1- (flag) ')
         .replace(/^(\s*)[-*]\s+\[flagoff]\s+/gm, '$1- (flagoff) ')
-        .replace(/[{}]/g, '\\$&')
 }
 
 const markdown: string | undefined = await readMarkdown()
@@ -57,6 +79,4 @@ if (markdown === undefined || markdown.length === 0) {
     process.exit(1)
 }
 
-process.stdout.write(
-    escapeCurlyBraces(convert(normalize(markdown)))
-)
+process.stdout.write(convertMarkdown(markdown))

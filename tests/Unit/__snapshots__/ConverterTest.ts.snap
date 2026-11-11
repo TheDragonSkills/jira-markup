@@ -40,9 +40,9 @@ h2. Table
 
 h2. Code
 
-\\{code:language=typescript\\}
-import \\{ convert \\} from '../converter/src/convert'
-\\{code\\}
+{code:language=typescript}
+import { convert } from '../converter/src/convert'
+{code}
 
 h2. Quote
 
@@ -89,9 +89,9 @@ h2. Table
 
 h2. Code
 
-\\{code:language=typescript\\}
-import \\{ convert \\} from '../converter/src/convert'
-\\{code\\}
+{code:language=typescript}
+import { convert } from '../converter/src/convert'
+{code}
 
 h2. Quote
 
