@@ -42,7 +42,11 @@ function normalize(text: string): string
         .replace(/^(\s*)[-*]\s+\[\s]\s+/gm, '$1- (x) ')
         .replace(/^(\s*)[-*]\s+\[x]\s+/gm, '$1- (/) ')
         .replace(/^(\s*)[-*]\s+\[!]\s+/gm, '$1- (!) ')
+        .replace(/^(\s*)[-*]\s+\[i]\s+/gm, '$1- (i) ')
+        .replace(/^(\s*)[-*]\s+\[on]\s+/gm, '$1- (on) ')
+        .replace(/^(\s*)[-*]\s+\[off]\s+/gm, '$1- (off) ')
         .replace(/^(\s*)[-*]\s+\[flag]\s+/gm, '$1- (flag) ')
+        .replace(/^(\s*)[-*]\s+\[flagoff]\s+/gm, '$1- (flagoff) ')
         .replace(/[{}]/g, '\\$&')
 }
 

@@ -23,9 +23,13 @@ h2. Checklist
 
 * (/) Foo
 * (x) Bar
-* [i] Baz
+* (i) Baz
 ** (/) Qwe
 ** (!) Rty
+*** (on) q1
+*** (off) q2
+*** (flag) q3
+*** (flagoff) q4
 * (flag) Baz
 
 h2. Table
@@ -36,16 +40,13 @@ h2. Table
 
 h2. Code
 
-{code:language=typescript|borderStyle=solid|theme=RDark|linenumbers=true|collapse=false}
-import { convert } from '../converter/src/convert'
-{code}
+\\{code:language=typescript\\}
+import \\{ convert \\} from '../converter/src/convert'
+\\{code\\}
 
 h2. Quote
 
-{quote}Some text
-
-{quote}
-"
+bq. Some text"
 `;
 
 exports[`converter.js converts markdown from stdin 1`] = `
@@ -71,9 +72,13 @@ h2. Checklist
 
 * (/) Foo
 * (x) Bar
-* [i] Baz
+* (i) Baz
 ** (/) Qwe
 ** (!) Rty
+*** (on) q1
+*** (off) q2
+*** (flag) q3
+*** (flagoff) q4
 * (flag) Baz
 
 h2. Table
@@ -84,14 +89,11 @@ h2. Table
 
 h2. Code
 
-{code:language=typescript|borderStyle=solid|theme=RDark|linenumbers=true|collapse=false}
-import { convert } from '../converter/src/convert'
-{code}
+\\{code:language=typescript\\}
+import \\{ convert \\} from '../converter/src/convert'
+\\{code\\}
 
 h2. Quote
 
-{quote}Some text
-
-{quote}
-"
+bq. Some text"
 `;

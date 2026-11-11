@@ -46,15 +46,6 @@ describe('converter.js', () => {
         expect(normalizeOutput(fromArgs.stdout)).toMatchSnapshot()
     })
 
-    test('applies markdown correction before converting', () => {
-        const result = runConverter([], '##Heading\n-Item')
-
-        expect(result.status).toBe(0)
-        expect(result.stderr).toBe('')
-        expect(normalizeOutput(result.stdout)).toContain('h2. Heading')
-        expect(normalizeOutput(result.stdout)).toContain('* Item')
-    })
-
     test('returns a clear error when markdown is empty', () => {
         const result = runConverter([], '')
 

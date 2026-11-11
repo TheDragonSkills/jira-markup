@@ -18,6 +18,19 @@ Do not hand-write Jira wiki markup directly unless the user explicitly asks for 
 
 The script accepts Markdown text as input and writes the converted Jira Markup output to `stdout`.
 
+## Extra Markup Notions
+
+| Markdown   | Jira  | Comment   |
+|---|---|---|
+| `- [ ]`  | `* (x)`  | Unchecked checkbox icon  |
+| `- [x]`  | `* (/)`  | Checked checkbox icon|
+| `- [!]`  | `* (!)`  | Attention icon|
+| `- [i]`  | `* (i)`  | Information icon|
+| `- [on]`  | `* (on)`  | An illuminated light bulb icon|
+| `- [off]`  | `* (off)`  | An icon of a light bulb that is off|
+| `- [flag]`  | `* (flag)`  | Active flag icon|
+| `- [flagoff]`  | `* (flagoff)`  | Inactive flag icon|
+
 ## Usage Examples
 
 Examples assume the current directory is the skill root and Node.js is available.

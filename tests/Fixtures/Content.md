@@ -23,6 +23,10 @@
 - [i] Baz
     * [x] Qwe
     * [!] Rty
+        * [on] q1
+        * [off] q2
+        * [flag] q3
+        * [flagoff] q4
 - [flag]  Baz
 
 ## Table
